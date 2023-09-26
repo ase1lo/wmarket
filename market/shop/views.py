@@ -13,8 +13,6 @@ class UserProductList(ListView):
     context_object_name = 'userpoducts'
 
 
-
-
 class ProductByName(DetailView):
     model = Product
     template_name = 'market/product_detail.html'
