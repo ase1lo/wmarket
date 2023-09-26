@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% block content %}
+
+{% for userproduct in userproducts %}
+<div class="card">
+    <div class="card-header">
+        <a href="#" class="btn btn-primary">{{ products.title }}</a>
+        {% if userproduct.want == 'SL' %}
+        <a href="#" class="btn btn-primary">sell</a>
+        {% else %}
+        <a href="#" class="btn btn-primary">buy</a>
+        {% endif %}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"></h5>
+        <p class="card-text">{{ userproduct.price }}</p>
+        <a href="#" class="btn btn-primary"> Quantity - {{ userproduct.quantity }}</a>
+        <a href="#" class="btn btn-primary">{{ userproduct.user }}</a>
+    </div>
+</div>
+</br>
+
+{% endfor %}
+{% endblock %}

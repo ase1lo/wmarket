@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block content %}
+
+{% for userproduct in userpoducts %}
+{% if userproduct.want == 'SL' %}
+
+{{ userproduct.product.title }} {{ userproduct.price }} {{ userproduct.user }}
+
+{% endif %}
+
+{% endfor %}
+
+{% endblock %}

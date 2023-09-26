@@ -1,0 +1,11 @@
+{% extends '_base.html' %}
+{% block content %}
+
+
+{% for product in products %}
+{{ product.category.title }}
+<div class="list-group">
+    <a href="/market/product_detail/{{ product.id }}" class="list-group-item list-group-item-action" aria-current="true">{{ product.title }}</a>
+  </div>
+{% endfor %}
+{% endblock %}
