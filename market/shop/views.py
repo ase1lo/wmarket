@@ -1,8 +1,9 @@
 from typing import Any, Dict
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 from .models import Product, UserProduct, Category
+from .forms import UserProductForm
 # Create your views here.
 
 
@@ -63,3 +64,42 @@ class ProductByCategory(ListView):
         data['cat_product'] = self.cat_product
         print(data)
         return data
+    
+
+# class UserProductCreateView(CreateView):
+#     model = UserProduct
+#     form_class = UserProductForm
+#     template_name = 'market/userproductform.html'
+
+# class UserProductCreateView(CreateView):
+#     model = UserProduct
+#     form_class = UserProductForm
+#     template_name = 'market/userproductform.html'
+
+
+#     def form_valid(self, form):
+#         product = form.cleaned_data['product']
+#         user_product = form.save(commit=False)
+        
+#         user_product.product = product
+#         user_product.save()
+#         return redirect()
+    
+
+def UserProductCreate(request):
+    
+    if request.method == 'POST':
+        user = request.user
+        form = UserProductForm(request.POST)
+        if form.is_valid():
+            product_id = form.cleaned_data['product']
+            user_product = form.save(commit=False)
+            user_product.product = product_id
+            user_product.user = user
+            print(user_product)
+            user_product.save()
+            return redirect('products')
+    else:
+        form = UserProductForm()
+
+    return render(request, 'market/userproductform.html', {'form': form})

@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.product }}
+    {{ form.price }}
+    {{ form.quantity }}
+    {{ form.want }}
+
+    <input type="submit" value="Save" class="btn btn-primary">
+</form>
+
+{% endblock %}
