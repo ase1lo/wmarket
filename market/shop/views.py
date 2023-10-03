@@ -33,7 +33,7 @@ class ProductByName(DetailView):
         data['userproducts'] = self.userproduct
         return data
     
-
+    
 class ProductListView(ListView):
     model = Product
     template_name = 'market/mainpage.html'
@@ -66,28 +66,7 @@ class ProductByCategory(ListView):
         return data
     
 
-# class UserProductCreateView(CreateView):
-#     model = UserProduct
-#     form_class = UserProductForm
-#     template_name = 'market/userproductform.html'
-
-# class UserProductCreateView(CreateView):
-#     model = UserProduct
-#     form_class = UserProductForm
-#     template_name = 'market/userproductform.html'
-
-
-#     def form_valid(self, form):
-#         product = form.cleaned_data['product']
-#         user_product = form.save(commit=False)
-        
-#         user_product.product = product
-#         user_product.save()
-#         return redirect()
-    
-
 def UserProductCreate(request):
-    
     if request.method == 'POST':
         user = request.user
         form = UserProductForm(request.POST)

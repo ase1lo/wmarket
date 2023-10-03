@@ -1,24 +1,50 @@
-{% extends '_base.html' %}
-{% block content %}
+{% extends '_base.html' %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+    {% for userproduct in userproducts %}
+    
+      {% if userproduct.want == 'BU' %}
+      <div class="card" style="background-color: rgb()">
+        <div class="card-header">
+          <a href="#" class="btn btn-primary">{{ products.title }}</a>
+          <a href="#" class="btn btn-primary">BUY</a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text", style="color:black">{{ userproduct.price }}</p>
+          <a href="#" class="btn btn-primary">
+            Quantity - {{ userproduct.quantity }}</a
+          >
+          <a href="#" class="btn btn-primary">{{ userproduct.user }}</a>
+        </div>
+      </div>
+      {% endif %} {% endfor %}
+    </div>
+    
 
-{% for userproduct in userproducts %}
-<div class="card">
-    <div class="card-header">
-        <a href="#" class="btn btn-primary">{{ products.title }}</a>
-        {% if userproduct.want == 'SL' %}
-        <a href="#" class="btn btn-primary">sell</a>
-        {% else %}
-        <a href="#" class="btn btn-primary">buy</a>
-        {% endif %}
-    </div>
-    <div class="card-body">
-        <h5 class="card-title"></h5>
-        <p class="card-text">{{ userproduct.price }}</p>
-        <a href="#" class="btn btn-primary"> Quantity - {{ userproduct.quantity }}</a>
-        <a href="#" class="btn btn-primary">{{ userproduct.user }}</a>
-    </div>
+
+    <div class="col-md-6">
+        {% for userproduct in userproducts %}
+        
+          {% if userproduct.want == 'SL' %}
+          <div class="card" style="background-color: rgb()">
+            <div class="card-header">
+              <a href="#" class="btn btn-primary">{{ products.title }}</a>
+              <a href="#" class="btn btn-primary">SELL</a>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">{{ userproduct.price }}</p>
+              <a href="#" class="btn btn-primary">
+                Quantity - {{ userproduct.quantity }}</a
+              >
+              <a href="#" class="btn btn-primary">{{ userproduct.user }}</a>
+            </div>
+          </div>
+          {% endif %} {% endfor %}
+        </div>
+  </div>
+  
 </div>
-</br>
-
-{% endfor %}
 {% endblock %}
