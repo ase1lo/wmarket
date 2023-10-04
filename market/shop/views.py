@@ -21,6 +21,7 @@ class ProductByName(DetailView):
     
     def get(self, request, *args, **kwargs):
         product_pk = kwargs['pk']
+        request.session['pk'] = product_pk
 
         try:
             self.userproduct = UserProduct.objects.filter(product_id=product_pk)
@@ -67,15 +68,17 @@ class ProductByCategory(ListView):
     
 
 def UserProductCreate(request):
+    print(request.session.get('pk'))
     if request.method == 'POST':
         user = request.user
+        product = request.session.get('pk')
         form = UserProductForm(request.POST)
         if form.is_valid():
-            product_id = form.cleaned_data['product']
+            product_id = product
             user_product = form.save(commit=False)
-            user_product.product = product_id
+            user_product.product = Product.objects.get(pk=product)
             user_product.user = user
-            print(user_product)
+            print(user_product.user, user_product.product)
             user_product.save()
             return redirect('products')
     else:

@@ -3,8 +3,9 @@
 {% block content %}
 <form method="POST">
     {% csrf_token %}
-    {{ form.product }}
+    <label>Цена</label>
     {{ form.price }}
+    <label> Количество </label>
     {{ form.quantity }}
     {{ form.want }}
 
