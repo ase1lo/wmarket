@@ -1,6 +1,6 @@
 from typing import Any, Dict
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView, CreateView
 from .models import Product, UserProduct, Category
 from .forms import UserProductForm
@@ -85,3 +85,16 @@ def UserProductCreate(request):
         form = UserProductForm()
 
     return render(request, 'market/userproductform.html', {'form': form})
+
+
+def deleteproduct(request, *args, **kwargs):
+    context = {}
+    print(kwargs)
+    id = kwargs['pk']
+    obj = get_object_or_404(UserProduct, id=id)
+    if request.method == 'POST':
+        obj.delete()
+        return HttpResponseRedirect('/market/products')
+    
+    return render(request, 'market/deleteproduct.html', context)
+
