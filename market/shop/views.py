@@ -68,17 +68,14 @@ class ProductByCategory(ListView):
     
 
 def UserProductCreate(request):
-    print(request.session.get('pk'))
     if request.method == 'POST':
         user = request.user
         product = request.session.get('pk')
         form = UserProductForm(request.POST)
         if form.is_valid():
-            product_id = product
             user_product = form.save(commit=False)
             user_product.product = Product.objects.get(pk=product)
             user_product.user = user
-            print(user_product.user, user_product.product)
             user_product.save()
             return redirect('products')
     else:
@@ -89,7 +86,6 @@ def UserProductCreate(request):
 
 def deleteproduct(request, *args, **kwargs):
     context = {}
-    print(kwargs)
     id = kwargs['pk']
     obj = get_object_or_404(UserProduct, id=id)
     if request.method == 'POST':
