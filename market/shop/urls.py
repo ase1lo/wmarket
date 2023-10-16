@@ -5,7 +5,7 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('userproducts', UserProductList.as_view(), name='userproducts'),
+    path('', UserProductList.as_view(), name='userproducts'),
     path('product_detail/<int:pk>', ProductByName.as_view(), name='detail'),
     path('products', ProductListView.as_view(), name='products'),
     path('categories', CategoryListView.as_view(), name='categories'),

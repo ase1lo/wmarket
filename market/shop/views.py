@@ -11,7 +11,7 @@ from .forms import UserProductForm
 class UserProductList(ListView):
     model = UserProduct
     template_name = 'market/userproduct.html'
-    context_object_name = 'userpoducts'
+    context_object_name = 'userproducts'
 
 
 class ProductByName(DetailView):
