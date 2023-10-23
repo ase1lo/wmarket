@@ -21,11 +21,3 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return str(self.email)
     
-    # def get_absolute_url(self):
-    #     return "/users/profile/%i" % self.id
-
-
-# class Follower(models.Model):
-#     follower = models.ForeignKey(CustomUser, on_delete=models.PROTECT, null=True, related_name='Подписчик')
-#     author = models.ForeignKey(CustomUser, on_delete=models.PROTECT, null=True, related_name='Автор')
-#     #можно подписаться несколько раз
